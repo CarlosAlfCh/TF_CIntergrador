@@ -1,0 +1,15 @@
+com\utp\modelo\CRUD.class
+com\utp\util\Conexion.class
+com\utp\entidad\Usuario.class
+com\utp\controlador\ServletControlador.class
+com\utp\entidad\Reserva.class
+com\utp\controlador\ServletGeneral.class
+com\utp\entidad\Persona.class
+com\utp\tf_integrador\JAXRSConfiguration.class
+com\utp\modelo\ClienteDAO.class
+com\utp\modelo\UsuarioDAO.class
+com\utp\controlador\ServletValida.class
+com\utp\entidad\Servicio.class
+com\utp\entidad\Cliente.class
+com\utp\tf_integrador\resources\JavaEE8Resource.class
+com\utp\modelo\ServicioDAO.class
