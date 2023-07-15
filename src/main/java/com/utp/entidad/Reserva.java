@@ -1,50 +1,34 @@
 package com.utp.entidad;
 
 public class Reserva {
-    private int idreserva;
-    private int codcliente;    
-    private int coduser;
+    private int item;
     private int idservicio;    
-    private String fecha;
+    private String nombre;
+    private String descripcion;
     private double subtotal;
+    private int npersonas;
     private double total;
 
     public Reserva(){
 
     }
-    
-    public Reserva(int idreserva, int codcliente, int coduser, int idservicio, String fecha, double subtotal, double total) {
-        this.idreserva = idreserva;
-        this.codcliente = codcliente;
-        this.coduser = coduser;
+
+    public Reserva(int item, int idservicio, String nombre, String descripcion, double subtotal, int npersonas, double total) {
+        this.item = item;
         this.idservicio = idservicio;
-        this.fecha = fecha;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
         this.subtotal = subtotal;
+        this.npersonas = npersonas;
         this.total = total;
     }
 
-    public int getIdreserva() {
-        return idreserva;
+    public int getItem() {
+        return item;
     }
 
-    public void setIdreserva(int idreserva) {
-        this.idreserva = idreserva;
-    }
-
-    public int getCodcliente() {
-        return codcliente;
-    }
-
-    public void setCodcliente(int codcliente) {
-        this.codcliente = codcliente;
-    }
-
-    public int getCoduser() {
-        return coduser;
-    }
-
-    public void setCoduser(int coduser) {
-        this.coduser = coduser;
+    public void setItem(int item) {
+        this.item = item;
     }
 
     public int getIdservicio() {
@@ -55,12 +39,20 @@ public class Reserva {
         this.idservicio = idservicio;
     }
 
-    public String getFecha() {
-        return fecha;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public double getSubtotal() {
@@ -71,6 +63,14 @@ public class Reserva {
         this.subtotal = subtotal;
     }
 
+    public int getNpersonas() {
+        return npersonas;
+    }
+
+    public void setNpersonas(int npersonas) {
+        this.npersonas = npersonas;
+    }
+
     public double getTotal() {
         return total;
     }
@@ -78,4 +78,5 @@ public class Reserva {
     public void setTotal(double total) {
         this.total = total;
     }
+    
 }

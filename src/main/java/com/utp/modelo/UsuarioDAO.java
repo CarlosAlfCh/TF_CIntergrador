@@ -104,6 +104,32 @@ public class UsuarioDAO implements CRUD<Usuario>{
         }
         return r;
     }
+    
+    public Usuario seleccionado(int codigo) {
+        Usuario user = new Usuario();        
+        String sql = "select * from persona where codigo=?";
+        try {
+            conn = cn.conectar();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, codigo);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                user.setCodigo(rs.getInt("codigo"));
+                user.setNombres(rs.getString("nombres"));
+                user.setApepat(rs.getString("apelpat"));
+                user.setApemat(rs.getString("apelmat"));
+                user.setDni(rs.getString("dni"));
+                user.setTelefono(rs.getString("telefono"));
+                user.setHorario(rs.getString("horario"));
+                user.setDireccion(rs.getString("direccion"));
+                user.setCorreo(rs.getString("correo"));
+                user.setContrasena(rs.getString("contrasena"));
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return user;
+    }
 
     @Override
     public int modificar(Usuario modificado) {
@@ -123,7 +149,7 @@ public class UsuarioDAO implements CRUD<Usuario>{
             ps.setString(7,modificado.getContrasena());
             ps.setString(8,modificado.getTurno());
             ps.setString(9,modificado.getHorario());
-            ps.setInt(10,modificado.getEstado());
+            ps.setInt(10,1);
             ps.setInt(11,modificado.getRol());
             ps.setInt(12,modificado.getIdespecialidad());
             ps.setString(13,modificado.getDireccion());
@@ -136,15 +162,15 @@ public class UsuarioDAO implements CRUD<Usuario>{
                 return 0;
             }
         } catch (Exception e) {
+            System.out.println(e.toString());
         }  
         return r;
     }
 
     @Override
-    public int eliminar(Usuario eliminado) {
+    public int eliminar(int eliminado) {
         int r=0;
-        int delete = eliminado.getCodigo();
-        String sql="UPDATE persona SET estado=? WHERE codigo="+delete;        
+        String sql="UPDATE persona SET estado=? WHERE codigo="+eliminado;        
         
         try {
             conn = cn.conectar();
@@ -158,7 +184,31 @@ public class UsuarioDAO implements CRUD<Usuario>{
                 return 0;
             }
         } catch (Exception e) {
+            System.out.println(e.toString());
         }  
+        System.out.println("Ingrese?? "+eliminado);
+        return r;
+    }
+    
+    public int activar(int activado) {
+        int r=0;
+        String sql="UPDATE persona SET estado=? WHERE codigo="+activado;        
+        
+        try {
+            conn = cn.conectar();
+            ps = conn.prepareStatement(sql);  
+            ps.setInt(1,1);
+            r=ps.executeUpdate();    
+            if(r==1){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }  
+        System.out.println("Ingrese?? "+activado);
         return r;
     }
     

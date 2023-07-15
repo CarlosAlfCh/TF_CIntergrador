@@ -4,22 +4,22 @@ import java.util.Date;
 
 public class Cliente extends Persona{
    
-    private Date FNacimiento;
+    private String FNacimiento;
 
     public Cliente() {
         super();
     }   
 
-    public Cliente(Date FNacimiento, int codigo, String nombres, String apepat, String apemat, String dni, String correo, String telefono, String contrasena, int estado, int rol, String Direccion, String Distrito) {
+    public Cliente(String FNacimiento, int codigo, String nombres, String apepat, String apemat, String dni, String correo, String telefono, String contrasena, int estado, int rol, String Direccion, String Distrito) {
         super(codigo, nombres, apepat, apemat, dni, correo, telefono, contrasena, estado, rol, Direccion, Distrito);
         this.FNacimiento = FNacimiento;
     }
 
-    public Date getFNacimiento() {
+    public String getFNacimiento() {
         return FNacimiento;
     }
 
-    public void setFNacimiento(Date FNacimiento) {
+    public void setFNacimiento(String FNacimiento) {
         this.FNacimiento = FNacimiento;
     }
 }

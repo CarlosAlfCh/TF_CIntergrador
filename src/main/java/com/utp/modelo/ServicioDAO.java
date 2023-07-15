@@ -73,6 +73,28 @@ public class ServicioDAO implements CRUD<Servicio>{
         return r;
     }
 
+    public Servicio seleccionado(int id) {
+        Servicio serv = new Servicio();        
+        String sql = "select * from servicio where idservicio=?";
+        try {
+            conn = cn.conectar();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                serv.setIdservicio(rs.getInt("idservicio"));
+                serv.setNomserv(rs.getString("nomserv"));
+                serv.setDescripcion(rs.getString("descripcion"));
+                serv.setPrecio(rs.getDouble("precio"));
+                serv.setImagen(rs.getString("imagen"));
+                serv.setDuracion(rs.getString("duracion"));
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return serv;
+    }
+    
     @Override
     public int modificar(Servicio modificado) {
         int r=0;
@@ -105,15 +127,33 @@ public class ServicioDAO implements CRUD<Servicio>{
     }
 
     @Override
-    public int eliminar(Servicio eliminado) {
+    public int eliminar(int eliminado) {
         int r=0;
-        int delete = eliminado.getIdservicio();
-        String sql="UPDATE servicio SET estadoserv=? WHERE idservicio="+delete;        
+        String sql="UPDATE servicio SET estadoserv=? WHERE idservicio="+eliminado;        
         
         try {
             conn = cn.conectar();
             ps = conn.prepareStatement(sql);  
             ps.setInt(1,0);
+            r=ps.executeUpdate();    
+            if(r==1){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        } catch (Exception e) {
+        }  
+        return r;
+    }
+    public int activar(int activado) {
+        int r=0;
+        String sql="UPDATE servicio SET estadoserv=? WHERE idservicio="+activado;        
+        
+        try {
+            conn = cn.conectar();
+            ps = conn.prepareStatement(sql);  
+            ps.setInt(1,1);
             r=ps.executeUpdate();    
             if(r==1){
                 return 1;

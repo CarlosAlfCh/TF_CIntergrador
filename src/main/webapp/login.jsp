@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
     </head>
-    <jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page="includes/header.jsp"></jsp:include>
     <body>
     <!-- Nav Bar Start -->
         <div class="nav-bar">
@@ -37,21 +37,35 @@
                 <div class="form-group" >
                     <h2 class="form-title" id="signup">Iniciar Sesión</h2>
                     <div class="form-holder">
-                        <input type="email" class="input" name="txtcorreo" placeholder="Correo" />
-                        <input type="password" class="input" name="txtcontrasena" placeholder="Contraseña" />
+                        <input type="email" class="input" name="txtcorreo" placeholder="Correo" required=""/>
+                        <input type="password" class="input" name="txtcontrasena" placeholder="Contraseña" required=""/>
                     </div>
                     <button class="submit-btn" name="metodo" value="loguear">Iniciar</button>
                 </div> 
             </form>
             <form action="ServletValida" method="POST" class="login slide-up">              
                 <div class="center">
-                    <h2 class="form-title" id="login">Registrate</h2>
-                    <div class="form-holder">
-                        <input type="text" class="input" name="txtnombres" placeholder="Nombres" />
-                        <input type="text" class="input" name="txtapelpat" placeholder="Apellido Paterno" />
+                    <h4 class="form-title" id="login">Registrate</h4>
+                    <div class="form-holder">                        
+                        <input type="text" class="input" name="txtnombres" placeholder="Nombres" required=""/>
+                        <input type="text" class="input" name="txtapelpat" placeholder="Apellido Paterno" required=""/>
                         <input type="text" class="input" name="txtapelmat" placeholder="Apellido Materno" />
-                        <input type="email" class="input" name="txtcorreo" placeholder="Correo" />
-                        <input type="password" class="input" name="txtcontrasena" placeholder="Contraseña" />
+                        <input type="text" class="input" name="txtdni" placeholder="DNI" required=""/>
+                        <input type="text" class="input" name="txttelefono" placeholder="Telefono" required=""/>
+                        <input type="date" class="input" name="txtfecha" placeholder="Fecha Nacimiento" required=""/>
+                        <input type="text" class="input" name="txtdireccion" placeholder="Direccion" required=""/>
+                        <select name="txtdistrito" class="input"> 
+                            <option value="NULL" selected>Seleccione Distrito</option>
+                            <option value="Cayma">Cayma</option>
+                            <option value="Cercado">Cercado</option>
+                            <option value="Yanahuara">Yanahuara</option>
+                            <option value="Selva Alegre">Selva Alegre</option>
+                            <option value="Mariano Melgar">Mariano Melgar</option>
+                            <option value="Hunter">Hunter</option>
+                            <option value="Cerro Colorado">Cerro Colorado</option>
+                        </select> 
+                        <input type="email" class="input" name="txtcorreo" placeholder="Correo" required=""/>
+                        <input type="password" class="input" name="txtcontrasena" placeholder="Contraseña" required=""/>                        
                     </div>
                     <button class="submit-btn" name="metodo" value="registrar">Registrar</button>
                 </div>
@@ -59,5 +73,5 @@
         </div>
     <!-- Login End --> 
     </body>
-    <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="includes/footer.jsp"></jsp:include>
 </html>
