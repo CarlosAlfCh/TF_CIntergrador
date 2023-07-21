@@ -152,6 +152,7 @@
                                 </div>
                             </div>
                         </div>
+                                            
                         <div class="card-header">
                             <h3>Costo de la Cita</h3>
                         </div>

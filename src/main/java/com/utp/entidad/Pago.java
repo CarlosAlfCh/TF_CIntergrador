@@ -1,22 +1,63 @@
 package com.utp.entidad;
 
 public class Pago {
+
+    private String nombres;
+    private String apepat;
+    private String apemat;
+    private String correo;
     private int idpago;
     private String fechapago;
     private String codigo;
     private String metodo;
     private int valido;
-    
-    public Pago(){
-        
+
+    public Pago() {
+
     }
 
-    public Pago(int idpago, String fechapago, String codigo, String metodo, int valido) {
+    public Pago(String nombres, String apepat, String apemat, String correo, int idpago, String fechapago, String codigo, String metodo, int valido) {
+        this.nombres = nombres;
+        this.apepat = apepat;
+        this.apemat = apemat;
+        this.correo = correo;
         this.idpago = idpago;
         this.fechapago = fechapago;
         this.codigo = codigo;
         this.metodo = metodo;
         this.valido = valido;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApepat() {
+        return apepat;
+    }
+
+    public void setApepat(String apepat) {
+        this.apepat = apepat;
+    }
+
+    public String getApemat() {
+        return apemat;
+    }
+
+    public void setApemat(String apemat) {
+        this.apemat = apemat;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public int getIdpago() {
@@ -59,4 +100,4 @@ public class Pago {
         this.valido = valido;
     }
 
-    }
+}

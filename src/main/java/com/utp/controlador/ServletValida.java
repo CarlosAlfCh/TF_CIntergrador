@@ -37,6 +37,12 @@ public class ServletValida extends HttpServlet {
                     case "registrar":
                         regristrarse(request, response);
                         break;
+                    case "enviar":
+                        envia(request, response);
+                        break;
+                    case "recuperar":
+                        restablece(request, response);
+                        break;
                     case "exit":
                         logout(request, response);
                         break;
@@ -157,5 +163,20 @@ public class ServletValida extends HttpServlet {
             response.sendRedirect("index.jsp");
         }
         System.out.println("log out??");
+    }
+    
+    private void envia(HttpServletRequest request, HttpServletResponse response)throws Exception{
+        String correo = request.getParameter("correo");
+        int resp = userdao.enviar(correo);
+        request.getRequestDispatcher("RContra.jsp").forward(request, response);
+        System.out.println("a restablecer");
+    }
+    
+    private void restablece(HttpServletRequest request, HttpServletResponse response)throws Exception{
+        String clave = request.getParameter("clave");
+        String pass = request.getParameter("txtcontrasena");
+        int resp = userdao.recuperar(clave, pass);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+        System.out.println("OKs");
     }
 }

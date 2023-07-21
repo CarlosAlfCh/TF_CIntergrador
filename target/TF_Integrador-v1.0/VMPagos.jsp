@@ -24,6 +24,8 @@
                             
                             <thead>
                                 <tr>
+                                    <th>Cliente</th>
+                                    <th>Correo</th>
                                     <th>Id</th>
                                     <th>Metodo</th>
                                     <th>Codigo</th>
@@ -35,6 +37,8 @@
                             <tbody>
                             <c:forEach var="p" items="${pagos}" varStatus="status">
                                     <tr>
+                                        <td>${p.nombres} ${p.apepat} ${p.apemat}</td>
+                                        <td>${p.correo}</td>
                                         <td>00000${p.idpago}</td>
                                         <td>${p.metodo}</td>
                                         <td>${p.codigo}</td>
@@ -52,7 +56,7 @@
                                                 <a href="ServletCitas?menu=error&idpago=${p.idpago}" class="btn btn-success btn-circle">
                                                     <i class="fas fa-check-double"></i>
                                                 </a>
-                                                <a href="" class="btn btn-warning btn-circle">
+                                                <a href="ServletCitas?menu=pay&correo=${p.correo}&id=${p.idpago}&metodo=${p.metodo}&fecha=${p.fechapago}" class="btn btn-warning btn-circle">
                                                     <i class="fas fa-envelope"></i>
                                                 </a>
                                             </c:if>

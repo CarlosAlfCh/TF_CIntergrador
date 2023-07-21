@@ -33,7 +33,12 @@
                 <div class="col-lg-4 col-md-12">
                     <div class="logo">
                         <a href="index.jsp">
-                            <img src="src/img/SPAUTP.png" alt="Logo">
+                            <c:if test="${cliente.estado == null}"> 
+                                <img src="src/img/SPAUTP.png" alt="Logo">
+                            </c:if>
+                            <c:if test="${cliente.estado != null}"> 
+                                <img src="src/img/SPAUTP-3.jpg" alt="Logo">
+                            </c:if>
                         </a>
                     </div>
                 </div>

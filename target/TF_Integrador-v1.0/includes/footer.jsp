@@ -23,7 +23,7 @@
 
 <!-- Template Stylesheet -->
 <link href="src/css/style.css" rel="stylesheet">
-
+<c:if test="${codpago == 0}">
 <!-- Footer Start -->
     <div class="footer wow fadeIn" data-wow-delay="0.3s">
         <div class="container">
@@ -82,6 +82,7 @@
                 <a href="../Vistas/atencion.jsp">Contactos</a>
             </div>
         </div>
+ </c:if>   
         <div class="container copyright">
             <div class="row">
                 <div class="col-md-6">

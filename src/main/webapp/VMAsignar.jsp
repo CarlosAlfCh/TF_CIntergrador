@@ -74,7 +74,7 @@
                                     </td>
                                     <td>
                                         <% if (c.getEstado() != 0) {%>
-                                        <a href="ServletCitas?menu=asigna&accion=info&id=<%= c.getIdcita()%>" class="btn btn-info btn-circle">
+                                        <a href="ServletCitas?menu=asigna&accion=info&id=<%= c.getIdcita()%>" class="btn btn-secondary btn-circle">
                                             <i class="fas fa-eye"></i>
                                         </a>
                                         <% } else {%>

@@ -68,7 +68,7 @@ public class ServletCitas extends HttpServlet {
                         System.out.println("Verificado");
                         break;
                     case "pay":
-                        
+                        validado(request, response);
                         System.out.println("Pago $v$");
                         break;
                     case "cita":
@@ -244,5 +244,15 @@ public class ServletCitas extends HttpServlet {
         request.setAttribute("veres", listres);
         request.getRequestDispatcher("VTAsignacion.jsp").forward(request, response);
         System.out.println("oki uwu :|");
+    }
+    
+    private void validado(HttpServletRequest request, HttpServletResponse response)throws Exception{
+        String correo = request.getParameter("correo");
+        String idpago = request.getParameter("id");
+        String metodo = request.getParameter("metodo");
+        String fecha = request.getParameter("fecha");
+        int r = pagodao.enviaMail(correo, idpago, metodo, fecha);
+        System.out.println(r);
+        request.getRequestDispatcher("ServletCitas?menu=listar").forward(request, response);
     }
 }

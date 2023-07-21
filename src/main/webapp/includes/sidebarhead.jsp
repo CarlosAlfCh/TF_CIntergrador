@@ -221,7 +221,8 @@
                                             </div>
                                             <div>
                                                 <div class="small text-gray-500"><%= p.getFechapago()%></div>
-                                                <span class="font-weight-bold">Pago por: <%= p.getMetodo()%><br>
+                                                <span class="font-weight-bold">
+                                                    Pago por: <%= p.getMetodo()%><br>
                                                     N° de operacion: <%= p.getCodigo()%><br>
                                                     Codigo: 00000<%= p.getIdpago()%>
                                                 </span>

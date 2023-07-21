@@ -8,7 +8,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Random;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class PagoDAO {
     Conexion cn = new Conexion();
@@ -51,18 +60,22 @@ public class PagoDAO {
     
     public List<Pago> listar() {
         ArrayList<Pago>list=new ArrayList<>();
-        String sql="select * from pago";
+        String sql="SELECT persona.nombres, persona.apelpat, persona.apelmat, persona.correo, pago.idpago, pago.codigo, pago.metodo, pago.fecha, pago.valido FROM persona INNER JOIN reserva ON persona.codigo=reserva.idcliente INNER JOIN pago ON reserva.idpago=pago.idpago;";
         try {
             conn=cn.conectar();
             ps=conn.prepareStatement(sql);
             rs=ps.executeQuery();
             while(rs.next()){
                 Pago pa=new Pago();
-                pa.setIdpago(rs.getInt("idpago"));
-                pa.setCodigo(rs.getString("codigo"));
-                pa.setMetodo(rs.getString("metodo"));
-                pa.setFechapago(rs.getString("fecha"));
-                pa.setValido(rs.getInt("valido"));
+                pa.setNombres(rs.getString(1));
+                pa.setApepat(rs.getString(2));
+                pa.setApemat(rs.getString(3));
+                pa.setCorreo(rs.getString(4));
+                pa.setIdpago(rs.getInt(5));
+                pa.setCodigo(rs.getString(6));
+                pa.setMetodo(rs.getString(7));
+                pa.setFechapago(rs.getString(8));
+                pa.setValido(rs.getInt(9));
                 list.add(pa);
             }
         } catch (Exception e) {
@@ -136,6 +149,46 @@ public class PagoDAO {
         }  
         System.out.println("Valido?? "+idpago);
         return r;
+    }
+    
+    public int enviaMail(String destinatario, String idpago, String metodo, String fecha) throws MessagingException {
+        int resp=0;
+        enviarCorreo(destinatario, idpago, metodo, fecha);
+        return resp=1;
+    }
+    
+    private void enviarCorreo(String destinatario, String idpago, String metodo, String fecha) throws MessagingException {
+        final String username = "spautp38@gmail.com";
+        final String password = "vgznsmnavtostejk";
+        final String host = "smtp.gmail.com";
+        final String port = "587";
+        final boolean starttls = true;
+        final boolean auth = true;
+
+        String asunto = "Su pago fue validado - SPAUTP";
+        String mensaje = "Codigo de pago: 00000"+idpago+"\n"+
+                        "Metodo: "+metodo+"\n"+
+                        "Fecha: "+fecha;
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", String.valueOf(auth));
+        props.put("mail.smtp.starttls.enable", String.valueOf(starttls));
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", port);
+
+        Session session = Session.getInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        Message email = new MimeMessage(session);
+        email.setFrom(new InternetAddress(username));
+        email.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinatario));
+        email.setSubject(asunto);
+        email.setText(mensaje);
+
+        Transport.send(email);
     }
 }
 class CodeGenerator {

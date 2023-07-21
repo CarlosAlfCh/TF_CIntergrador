@@ -1,9 +1,11 @@
 com\utp\modelo\CRUD.class
 com\utp\util\Conexion.class
 com\utp\entidad\Usuario.class
+com\utp\modelo\CodeG.class
 com\utp\controlador\ServletGeneral.class
 com\utp\entidad\Persona.class
 com\utp\tf_integrador\JAXRSConfiguration.class
+com\utp\modelo\PagoDAO$1.class
 com\utp\modelo\ClienteDAO.class
 com\utp\entidad\Consigna.class
 com\utp\modelo\ServicioDAO.class
@@ -20,5 +22,6 @@ com\utp\modelo\ReservaDAO.class
 com\utp\entidad\Servicio.class
 com\utp\entidad\Cliente.class
 com\utp\tf_integrador\resources\JavaEE8Resource.class
+com\utp\modelo\UsuarioDAO$1.class
 com\utp\entidad\Detalle.class
 com\utp\entidad\Pago.class
